@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${snack.id} ? '간식 수정' : '새 간식 추가'"></title>
+</head>
+<body>
+    <h1 th:text="${snack.id} ? 'Edit Snack' : 'Add New Snack'"></h1>
+    <form th:action="${snack.id} ? @{/admin/snacks/edit/{id}(id=${snack.id})} : @{/admin/snacks/add}" 
+          th:object="${snack}" method="post">
+        <div>
+            <label for="name">이름:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div>
+            <label for="taste">맛:</label>
+            <input type="text" id="taste" th:field="*{taste}" required>
+        </div>
+        <div>
+            <label for="inventoryCount">재고:</label>
+            <input type="number" id="inventoryCount" th:field="*{inventoryCount}" required>
+        </div>
+        <button type="submit" th:text="${snack.id} ? '수정' : '추가'"></button>
+    </form>
+    <a th:href="@{/admin/snacks}">간식 목록</a>
+</body>
+</html>

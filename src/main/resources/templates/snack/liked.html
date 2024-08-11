@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>좋아요한 간식</title>
+</head>
+<body>
+    <h1>좋아요한 간식</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>맛</th>
+                <th>기능</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="snack : ${likedSnacks}">
+                <td th:text="${snack.name}"></td>
+                <td th:text="${snack.taste}"></td>
+                <td><a th:href="@{/snacks/{id}(id=${snack.id})}">자세히 보기</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/snacks}">간식 목록</a>
+</body>
+</html>
